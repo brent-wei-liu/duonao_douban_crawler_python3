@@ -27,7 +27,7 @@ tab.Network.enable()
 # call method with timeout
 metrics = open('log/1.metrics.log', 'w')
 
-for i in range(1, 5):
+for i in range(1, 605):
     url = 'https://www.dnvod.tv/list?keyword=&star=&page=%d&pageSize=30' % i
     tab.Page.navigate(url=url, _timeout=5)
     # wait for loading
