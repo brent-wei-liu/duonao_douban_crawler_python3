@@ -1,0 +1,37 @@
+brew install cassandra
+
+To have launchd start cassandra now and restart at login:
+  brew services start cassandra
+Or, if you don't want/need a background service you can just run:
+  cassandra -f
+
+You can start Cassandra with sudo service cassandra start and stop it with sudo service cassandra stop. However, normally the service will start automatically. For this reason be sure to stop it if you need to make any configuration changes.
+Verify that Cassandra is running by invoking nodetool status from the command line.
+The default location of configuration files is /etc/cassandra.
+The default location of log and data directories is /var/log/cassandra/ and /var/lib/cassandra
+
+
+Cassandra file locations
+------------------------
+- Properties: `/usr/local/etc/cassandra`
+- Logs: `/usr/local/var/log/cassandra`
+- Data: `/usr/local/var/lib/cassandra/data`
+
+
+$ cqlsh
+describe cluster;
+describe keyspaces;
+CREATE KEYSPACE "my_key_space" WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+use my_key_space;
+
+CREATE TABLE movie(
+   id uuid PRIMARY KEY,
+   name text,
+   score float,
+   json text
+);
+
+describe tables;
+
+INSERT INTO emp (emp_id, emp_name, emp_city,
+   emp_phone, emp_sal) VALUES(1,'ram', 'Hyderabad', 9848022338, 50000);
